@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>product</title>
+    <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/public/header.css">
+    <link rel="stylesheet" href="/css/public/prolist.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <%- include('conheader.ejs')  -%>
+    <div class="main-content">
+
+        <div class="product-page">
+
+            <div class="card">
+                <div class="card-header"><i class="icons fa-2x cui-cart ">购物车</i> <div align="right">&yen;<span id="a"><%=price%></span><a href="/consumer/conorderInfo" class="btn btn-danger">结算</a></div></div>
+            </div>
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">全选</th>
+                        <th class="text-center" scope="col">编号</th>
+                        <th class="text-center" scope="col">商品名称</th>
+                        <th class="text-center" scope="col">商品图片</th>
+                        <th class="text-center" scope="col">商品价格</th>
+                        <th class="text-center" scope="col">数量</th>
+                        <th class="text-center" scope="col">金额</th>
+                        <th class="text-center" scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0 ; i < shopping.length;i++){%>
+                    <tr class="protop">
+                        <td class="text-center proitem"><input type="checkbox" name="checkbox" id="checkbox" /></td>
+                        <td class="text-center proitem"><%=shopping[i]._id%></td>
+                        <td class="text-center proitem"><%=shopping[i].conName%></td>
+                        <td class="text-center proitem"><img src="<%=shopping[i].conImg%>"
+                                alt="<%=shopping[i].conName%>" width="100" id="conImg"></td>
+                        <td class="text-center proitem">&yen;<span id="concost<%=i%>"><%=shopping[i].concost%></td>
+                        <td class="text-center proitem">
+
+                            <input type="number" value="<%=shopping[i].conumber%>" id="number<%=i%>" onchange="editCart(this)"
+                                oninput="if(value>100)value=100;if(value<1)value=1" />
+
+                        </td>
+                        <td class="text-center proitem">
+
+                            <span id="all<%=i%>"><%=shopping[i].total%></span>
+
+                        </td>
+
+                        <td class="text-center proitem">
+                            <a href="/consumer/condelete?id=<%=shopping[i]._id.toString()%>"
+                                class="btn btn-danger"><i class="fa fa-close "></i>删除</a>
+                        </td>
+                    </tr>
+                    <%}%>
+                    </tbody>
+
+                </table>
+              
+            </div>
+        </div>
+        <script>
+            function editCart(obj) {
+                var n = obj.value;
+                var all = 0;
+                //console.log(index)
+                for(var i = 0 ; i < '<%=shopping.length%>';i++){
+                    console.log(document.getElementById("number"+i).value)
+                    console.log(document.getElementById("concost"+i).innerText)
+                    console.log(document.getElementById("all"+i).innerText)
+                    document.getElementById("all"+i).innerText = document.getElementById("number"+i).value * document.getElementById("concost"+i).innerText 
+
+            }
+            var a=0;
+            for(var i = 0 ; i < '<%=shopping.length%>';i++){
+            
+                a=a+parseInt(document.getElementById("all"+i).innerText)
+                    console.log("=================",a)
+                    // document.getElementById("all"+i).innerText = document.getElementById("number"+i).value * document.getElementById("concost"+i).innerText 
+            }
+            document.getElementById("a").innerText=a
+
+        }
+
+        </script>
+    </body>
+
+</html>

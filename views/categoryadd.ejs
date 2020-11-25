@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>product</title>
+        <link rel="stylesheet" href="/css/public/header.css">
+        <link rel="stylesheet" href="/css/public/prolist.css">
+        <link rel="stylesheet" href="/css/productadd.css">
+        <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+        <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('header.ejs')  -%>
+        <div class="main-content">
+            <%- include('prolist.ejs')  -%>
+            <div class="product-page">
+                
+                <div class="card mb-3" style="width: 100%;">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">分类管理</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">新增</li>
+                        </ol>
+                    </nav>
+                    <ul class="list-group list-group-flush">
+                        
+                        <li class="list-group-item">
+                            <form action="/product/cateadd" method="post">
+                                <div class="form-group row">
+                                    <input type="text" class="form-control col-6"  id="name" placeholder="请输入分类名称" name="name" required>&nbsp;&nbsp;
+                                    <input type="submit" class="btn btn-primary" value="新增">
+                                </div>
+                            </form>
+                            
+                        </li>
+                    </ul>
+                </div>
+                <div class="card mb-3" style="width: 100%;">
+                    <table class="table table-light table-striped">
+                        <thead>
+                            <tr>
+                            <th class="text-center" scope="col">编号</th>
+                            <th class="text-center" scope="col">商品类别</th>
+                            <th class="text-center" scope="col">操作</th>
+                            </tr>
+                        </thead>
+                        <% for(var i = 0 ; i < category.length;i++){%>   
+                        <tr class="protop">
+                            <td class="text-center proitem"><%=i+1%></td>
+                            <td class="text-center proitem"><%=category[i].name%></td>
+                            <td class="text-center proitem">
+                                <a href="/product/categoryedit?id=<%=category[i]._id.toString()%>"class="btn btn-success">修改</a>
+                                 <a href="/product/categorydelete?id=<%=category[i]._id.toString()%>"class="btn btn-primary">删除</a>
+                            </td>
+                        </tr>
+                        <%}%>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>product</title>
+    <link rel="stylesheet" href="/css/public/header.css">
+    <link rel="stylesheet" href="/css/public/prolist.css">
+    <link rel="stylesheet" href="/css/productadd.css">
+    <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <%- include('header.ejs')  -%>
+    <div class="main-content">
+        <%- include('prolist.ejs')  -%>
+        <div class="product-page">
+
+            <div class="card mb-3" style="width: 100%;">
+                <div class="card-header">发布商品</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <form action="/product/doproductadd" method="post" enctype="multipart/form-data" >
+
+                            <div class="form-group row">
+                              
+                                <label for="category" class="col-1 col-form-label">商品分类</label>
+ 
+                                <select class="form-control col-6"  name="category">
+                                    <option ></option>
+                                 <% for(var i = 0 ; i < category.length;i++){%>
+                                    <option value="<%=category[i]._id%>"><%=category[i].name%></option>
+                                 <%}%>
+                               </select>
+     
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="proName" class="col-1 col-form-label">商品名称</label>
+                                    <input type="text" class="form-control col-6" id="proName" name="proName" required>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="proImg" class="col-1 col-form-label">商品图片</label>
+                                    <input type="file" class="col-6 form-control-plaintext" name="proImg" >
+                                </div>
+                                <div class="form-group row">
+                                    <label for="procost" class="col-1 col-form-label">商品价格</label>
+                                    <input type="text" id="procost" class="form-control col-6" name="procost" required>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inventory" class="col-1 col-form-label">库存</label>
+                                    <input type="text" id="inventory" class="form-control col-6" name="inventory">
+                                </div>
+                                <div class="form-group row">
+                                    <label for="description" class="col-1 col-form-label">商品描述</label>
+                                    <textarea id="description" class="form-control col-6" rows="3" name="description"></textarea>
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="提交">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

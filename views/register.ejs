@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>注册</title>
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <div  class="container">
+           
+            <form action="/login/doRegister" method="post" enctype="multipart/form-data">
+                <h2>用户注册</h2>
+                <input type="text" name="username"placeholder="用户名" required>
+                <input type="password" name="password"  placeholder="密码" required>
+                <input type="password" class="form-control col-7"  name="repassword" required
+                        placeholder="请再次填写密码">
+                 <input name="file" type="file" >
+                <input type="submit" value="注册" id="Login">
+                <a href="/login" class="register">已经注册，返回登录</a>
+            </form>
+         
+        </div>
+    </body>
+</html>

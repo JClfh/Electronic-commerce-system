@@ -1,0 +1,37 @@
+
+
+<header class="public-header">
+  
+    <ul class="content">
+        <li class="content-item">
+            <a href=""><img src="http://static.nodejs.cn/_static/img/logo.svg" height="30" alt=""></a>
+        </li>
+        <li class="content-item">
+            <a href="/consumer"><i class="fa fa-graduation-cap fa-2x">首页</i></a>
+        </li>
+        <li class="content-item">
+            <a href="/consumer/conshopping"><i class="icons fa-2x cui-cart ">购物车</i></a>
+        </li>
+        <li class="content-item">
+            <a href="/consumer/conmyorder"><i class="icons fa-2x cui-user ">我的订单</i></a>
+        </li>
+        <li class="content-item">
+        <form class="form-inline" action="/consumer/search" method="GET">
+        
+        <input type="text" class="form-control mx-2" name="name" placeholder="input ProductName">
+        <input type="submit" class="form-control" value="开始搜索">
+       </form>
+</li>
+    </ul>
+
+    <ul class="content">
+      
+        <img src="<%=user.imagepath%>" class="img-avatar" width="30" height="30" alt="">
+        <li class="content-item">
+            <a href="/consumer/concenter">欢迎你,<%=user.username%></a>
+        </li>
+        <li class="content-item">
+            <a href="/login">安全退出</a>
+        </li>
+    </ul>
+</header>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>product</title>
+    <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/public/header.css">
+    <link rel="stylesheet" href="/css/public/prolist.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="/static/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <script src="/static/vendors/popper.js/js/popper.min.js"></script>
+    <script src="/static/vendors/perfect-scrollbar/js/perfect-scrollbar.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <%- include('conhead.ejs')  -%>
+    <div class="main-content">
+
+        <div class="product-page">
+
+            <div class="card mb-3" style="width: 100%;">
+                <div class="card-header">订单信息</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <form action="/product/doproductadd" method="post" enctype="multipart/form-data" >
+
+                            <div class="form-group row">
+                              
+                                <label for="category" class="col-1 col-form-label">订单编号</label>
+                                  <p><%=order.orderid%></p>
+                                </div>
+            
+                                <div class="form-group row">
+                                    <label for="proName" class="col-1 cosl-form-label">收货人</label>
+                                    <%=order.ordername%>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="preview" class="col-1 col-form-label">商品名称</label>
+                                    
+                                    <% for(var i = 0 ; i < order.orderlist.length;i++){%>
+                                        <%=order.orderlist[i].conName%>x<%=order.orderlist[i].conumber%>
+
+                                     <%}%>
+                                  
+
+                                </div>
+                                <div class="form-group row">
+                                    <label for="preview" class="col-1 col-form-label">图片预览</label>
+                                    <% for(var i = 0 ; i < order.orderlist.length;i++){%>
+                         
+                                            <img src="<%=order.orderlist[i].conImg%>" id="preview" width="200" height="200">
+                                     <%}%>
+                                    
+                                </div>
+                                <div class="form-group row">
+                                    <label for="procost" class="col-1 col-form-label">总价格</label>
+                                    &yen;<%=order.ordertotal%>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inventory" class="col-1 col-form-label">下单时间</label>
+                                    <%=new Date(order.Time).getFullYear()%>-<%=new Date(order.Time).getMonth()+1%>-
+                                    <%=new Date(order.Time).getDate()%>  <%=new Date(order.Time).getHours()%>:
+                                    <%=new Date(order.Time).getMinutes()%>:<%=new Date(order.Time).getSeconds()%>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inventory" class="col-1 col-form-label">联系方式</label>
+                                    <%=order.ordertel%>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inventory" class="col-1 col-form-label">收货地址</label>
+                                    <%=order.orderaddress%>
+                                </div>
+
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+              
+            </div>
+        </div>
+
+    </body>
+
+</html>

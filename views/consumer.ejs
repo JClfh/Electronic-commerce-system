@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>product</title>
+        <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/public/header.css">
+        <link rel="stylesheet" href="/css/public/prolist.css">
+        <link rel="stylesheet" href="/css/product.css">
+        <link rel="stylesheet" href="/css/productlist.css">
+        <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/static/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('conheader.ejs')  -%>
+        <div class="main-content">
+            <!-- <%- include('conlist.ejs')  -%> -->
+            <div class="product-page">
+                     
+                <div class="banner">
+                    <div><img src="/images/1593089615.jpg"></div>
+                    </div>
+                  
+                       
+                            <div class="header" >
+                                <ul>
+                                   
+                                <!-- <li><a href="#">穿搭速递</a> </li> -->
+                                <li><a href="/consumer">全部分类</a> </li> 
+                                    <% for(var i = 0 ; i < category.length;i++){%>
+                                        <li><a href="/consumer/conlist?id=<%=category[i]._id%>"><%=category[i].name%></a> </li> 
+                                     <%}%>
+                                </ul>
+                            </div >
+                            <div class="current">
+                                <% for(var i = 0 ; i < products.length;i++){%>  
+                                <div class="sale">
+                                  <a href="#"><img src="<%=products[i].proImg%>"></a>
+                                  <h3><%=products[i].proName%></h3>
+                                  <div class="price">&yen;<%=products[i].procost%></div>
+                                  <div ><span class="salemoun"><%= products[i].description%></span></div>
+                                  <a href="/consumer/condetails?id=<%= products[i]._id%>" class="introduce"><span>商品详情</span></a>
+                                  <div class="salemount"><span>销售量<%=products[i].views%></span></div>
+                                  <div class="rate">库存：<%=products[i].inventory%></div>
+                                  <div class="buy"><a href="/consumer/conshop?id=<%= products[i]._id%>">加入购物车</a></div>
+                                </div>
+                                <%}%>
+                            </div>
+
+                </div>
+              
+            </div>
+            
+        </div>
+    </body>
+
+</html>

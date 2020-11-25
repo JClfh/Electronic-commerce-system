@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>product</title>
+        <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/public/header.css">
+        <link rel="stylesheet" href="/css/public/prolist.css">
+        <link rel="stylesheet" href="/css/product.css">
+        <link rel="stylesheet" href="/css/productlist.css">
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('header.ejs')  -%>
+        <div class="main-content">
+            <%- include('prolist.ejs')  -%>
+            <div class="product-page">
+                     
+                <div class="card mb-3" >
+                            <div class="header" >
+                                <ul>
+                                   
+                                <!-- <li><a href="#">穿搭速递</a> </li> -->
+                                <li><a href="/product/productlist">全部分类</a> </li> 
+                                    <% for(var i = 0 ; i < category.length;i++){%>
+                                        <li><a href="/product/protlist?id=<%=category[i]._id%>"><%=category[i].name%></a> </li> 
+                                     <%}%>
+                                </ul>
+                            </div >
+                <div>
+                </div>
+                </div>
+                <div class="current">
+                    <% for(var i = 0 ; i < products.length;i++){%>  
+                    <div class="sale">
+                      <a href="#"><img src="<%=products[i].proImg%>"></a>
+                      <h3><%=products[i].proName%></h3>
+                      <div class="price">&yen;<%=products[i].procost%>&nbsp;</div>
+                      <span class="salemoun"><%= products[i].description%></span><br>
+                      <div class="salemount"><span>销售量<%=products[i].views%></span></div>
+                      <div class="rate">库存：<%=products[i].inventory%></div>
+                      <div class="buy"><a href="#">下架</a></div>
+                    </div>
+                    <%}%>
+                </div>
+
+            </div>
+            
+        </div>
+    </body>
+
+</html>

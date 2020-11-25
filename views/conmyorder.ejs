@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>product</title>
+        <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/public/header.css">
+        <link rel="stylesheet" href="/css/public/prolist.css">
+        <link rel="stylesheet" href="/css/product.css">
+        <link rel="stylesheet" href="/css/productlist.css">
+        <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/static/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('conhead.ejs')  -%>
+        <div class="main-content">
+            <div class="product-page">
+              
+                <div class="card mb-3" >
+                    <div class="card-header"><i class="icons fa-2x cui-user ">我的订单</i></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="display:flex;justify-content:space-between;align-items:center;">
+                            <form class="form-inline" action="/consumer/ordresearch" method="GET">
+                                    名称
+                                <input type="text" class="form-control mx-2" name="name" placeholder="input ProductName">
+                                <input type="submit" class="form-control" value="开始搜索">
+                            </form>
+                            <div>
+                                <a href="/product/previous" class="btn btn-success mr-2">上一页</a>
+                                <a href="/product/next" class="btn btn-danger">下一页</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <table class="table table-light table-striped">
+                    <thead>
+                        <tr>
+                        <th class="text-center" scope="col">订单编号</th>
+                        <th class="text-center" scope="col">总价格</th>
+                        <th class="text-center" scope="col">下单时间</th>
+                        <th class="text-center" scope="col">状态</th>
+                        <th class="text-center" scope="col">订单详情</th>
+                        <th class="text-center" scope="col">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0 ; i < orders.length;i++){%>   
+                            <tr class="protop">
+                                <td class="text-center proitem"><%=orders[i].orderid%></td>
+                                <td class="text-center proitem">&yen;<%=orders[i].ordertotal%></td>
+                                <td class="text-center proitem"> 
+                                    <%=new Date(orders[i].Time).getFullYear()%>-<%=new Date(orders[i].Time).getMonth()+1%>-
+                                    <%=new Date(orders[i].Time).getDate()%>  <%=new Date(orders[i].Time).getHours()%>:
+                                    <%=new Date(orders[i].Time).getMinutes()%>:<%=new Date(orders[i].Time).getSeconds()%>
+                                </td>
+                                <% if (orders[i].status==0) { %>
+                                <td class="text-center proitem">待付款</td>
+                                <% } if (orders[i].status==1)  { %>
+                                    <td class="text-center proitem">待商家接单</td>
+                                    <% } if (orders[i].status==2)  { %>
+                                        <td class="text-center proitem">待发货</td>
+                                        <% } if (orders[i].status==3)  { %>
+                                            <td class="text-center proitem">已发货</td>
+                                        <% } if (orders[i].status==4)  { %>
+                                            <td class="text-center proitem">已确认收货</td>
+                                            <% }%>
+
+                                <td class="text-center proitem"><a href="/consumer/conmyorderxq?id=<%=orders[i]._id%>">订单详情</a></td>
+                                <td class="text-center proitem">
+                                    <% if (orders[i].status==0) { %>
+                                        <a href="/consumer/conmyorderpayment?id=<%=orders[i]._id%>" class="btn btn-success mr-2" >付款</a>
+                                        <% } if (orders[i].status==1)  { %>
+                                            <a href="/consumer/conorderdelete?id=<%=orders[i]._id%>" class="btn btn-danger mr-2">取消订单</a>
+                                            <% } if (orders[i].status==2)  { %>
+                                                    商家已接单
+                                                <% } if (orders[i].status==3)  { %>
+                                               <a href="/consumer/conmyordersh?id=<%=orders[i]._id%>" class="btn btn-primary mr-2">确认收货</a>
+                                                <% } if (orders[i].status==4)  { %>
+                                                    <a href="#" class="btn btn-success mr-2">评价</a>
+                                                    <a href="/consumer/conorderdelete?id=<%=orders[i]._id%>" class="btn btn-danger mr-2">删除</a>
+                                                    <% }%>
+                                </td>
+                          
+                            </tr>
+                            <%}%>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+</html>

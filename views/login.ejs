@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>login</title>
+        <link rel="stylesheet" href="/css/login.css">
+        <link rel="stylesheet" href="/css/main.css">
+        
+    </head>
+    <body>
+        <div class="container">
+            <form action="/login/doLogin" method="post">
+                <h2>用户登录</h2>
+                <input type="text" name="username"  placeholder="用户名"  required>
+                <input type="password" name="password"  placeholder="密码"  required>
+                <input type="submit" value="登录" id="Login">
+                <a href="/login/register" class="register">还没注册，前往注册</a>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>product</title>
+        <link rel="stylesheet" href="/css/public/header.css">
+        <link rel="stylesheet" href="/css/public/prolist.css">
+        <link rel="stylesheet" href="/css/productadd.css">
+        <link rel="stylesheet" href="/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+        <script src="/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('header.ejs')  -%>
+        <div class="main-content">
+            <%- include('prolist.ejs')  -%>
+            <div class="product-page">
+                <div class="card mb-3" style="width: 100%;">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">分类管理</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">修改</li>
+                        </ol>
+                    </nav>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <form role="form" method="post">
+                                <div class="form-group row">
+
+                                    <label for="procost" class="col-1 col-form-label">  商品分类：</label>
+                                    <input type="text" class="form-control col-6"  id="name" placeholder="请输入分类名称" name="name"  value="<%=category.name%>"required >&nbsp;&nbsp;
+                                   
+                                </div>
+                                 <input type="submit" class="btn btn-primary" value="修改">
+                            </form>
+                            
+                        </li>
+                    </ul>
+                </div>
+               
+            </div>
+        </div>
+
+
+        
+    </body>
+</html>
